@@ -1,0 +1,8 @@
+// 主题颜色配置
+const COMMON_COLOR = '#2BDA8E'
+const COMMON_COLOR_DEFAULT = '#0AC4BA'
+
+export {
+  COMMON_COLOR,
+  COMMON_COLOR_DEFAULT,
+}
