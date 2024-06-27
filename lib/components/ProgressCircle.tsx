@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Animated, Easing, Text, View } from 'react-native'
-import { FontWeights } from '../../types/common.ts'
+import { FontWeights } from '../types/common.ts'
 import Svg, { Circle, Defs, LinearGradient, Linecap, Stop } from 'react-native-svg'
-import { COMMON_COLOR, COMMON_COLOR_DEFAULT } from '../../configs/colors.ts'
+import { COMMON_COLOR, COMMON_COLOR_DEFAULT } from '../configs/colors.ts'
 
 type Props = {
   width?: number

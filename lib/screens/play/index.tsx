@@ -4,7 +4,6 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import styles, { width } from '../../styles/play.ts'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import Header from './header.tsx'
-import CustomBg from './customBg.tsx'
 import Swiper from './swiper.tsx'
 import usePlay from '../../services/usePlay.ts'
 
@@ -39,7 +38,6 @@ const Play = () => {
   return (
     <View style={styles.container}>
       <Header page={page} />
-      <CustomBg page={page} />
       <Animated.FlatList
         ref={flatListRef}
         initialNumToRender={20}

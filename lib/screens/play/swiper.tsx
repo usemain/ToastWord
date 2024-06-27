@@ -22,7 +22,7 @@ const Swiper = ({ item, index, playingIndex, onWordPlay }: Props) => {
           )
         }
         <MaterialIcons
-          size={18}
+          size={20}
           name={'volume-up'}
           color={playingIndex === index ? '#606060' : '#a5a5a5'}
         />

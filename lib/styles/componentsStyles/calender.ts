@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { COMMON_COLOR, GLOBAL_COLOR } from '../../configs/colors.ts'
+import { COMMON_COLOR } from '../../configs/colors.ts'
 
 const styles = StyleSheet.create({
   header: {

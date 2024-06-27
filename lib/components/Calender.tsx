@@ -1,9 +1,9 @@
 import { FlatList, Pressable, Text, View } from 'react-native'
-import { COMMON_COLOR } from '../../configs/colors.ts'
+import { COMMON_COLOR } from '../configs/colors.ts'
 import { useState } from 'react'
-import { CalendarItemType, DatesType } from '../../types/calendar.ts'
+import { CalendarItemType, DatesType } from '../types/calendar.ts'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import styles from '../../styles/componentsStyles/calender.ts'
+import styles from '../styles/componentsStyles/calender.ts'
 import dayjs from 'dayjs'
 
 type Props = {

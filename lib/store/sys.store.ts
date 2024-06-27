@@ -2,6 +2,7 @@ import { create } from 'zustand'
 import { Data } from '../types/home.ts'
 import { Word } from '../types/resources.ts'
 import { LearningDictionaryData } from '../dao/models/learningDictionary.tsx'
+import { IThemeName } from '../types/theme.ts'
 
 type Props = {
   data: Data | null
@@ -10,6 +11,8 @@ type Props = {
   setLearningDictionary: (e: LearningDictionaryData | null) => void
   dictionaryData: Word[]
   setDictionaryData: (e: Word[]) => void
+  theme: IThemeName
+  setTheme: (theme: IThemeName) => void
 }
 
 const useSysStore = create<Props>((set) => ({
@@ -23,7 +26,11 @@ const useSysStore = create<Props>((set) => ({
 
   // 当前词库Json
   dictionaryData: [],
-  setDictionaryData: (e: Word[]) => set(() => ({ dictionaryData: e }))
+  setDictionaryData: (e: Word[]) => set(() => ({ dictionaryData: e })),
+
+  // 当前主题色
+  theme: 'light',
+  setTheme: (theme: IThemeName) => set(() => ({ theme }))
 }))
 
 export default useSysStore

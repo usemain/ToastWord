@@ -4,9 +4,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Navigation } from '../../types/common.ts'
 import Tabs from './tabs'
 import Home from './home'
-import Search from './search'
-import Chart from './chart'
-import My from './my'
+import Card from './card'
+import Msg from './msg'
+import Menu from './menu'
 
 const { Navigator, Screen } = createBottomTabNavigator()
 
@@ -14,7 +14,7 @@ type Props = {
   navigation: Navigation
 }
 
-const TabBar = ({ navigation }: Props) => {
+const Dashboard = ({ navigation }: Props) => {
   useEffect(() => {
     const backAction = (): boolean => {
       if (navigation.getState().routes.length === 1) {
@@ -38,11 +38,11 @@ const TabBar = ({ navigation }: Props) => {
       screenOptions={() => ({ headerShown: false })}
     >
       <Screen name="Home" component={Home} />
-      <Screen name="Search" component={Search} />
-      <Screen name="Chart" component={Chart} />
-      <Screen name="My" component={My} />
+      <Screen name="Card" component={Card} />
+      <Screen name="Msg" component={Msg} />
+      <Screen name="Menu" component={Menu} />
     </Navigator>
   )
 }
 
-export default TabBar
+export default Dashboard

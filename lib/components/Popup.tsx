@@ -1,7 +1,7 @@
 import { Animated, Dimensions, TouchableWithoutFeedback } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useEffect, useRef } from 'react'
-import styles from '../../styles/componentsStyles/menu.ts'
+import styles from '../styles/componentsStyles/menu.ts'
 
 const { height } = Dimensions.get('window')
 

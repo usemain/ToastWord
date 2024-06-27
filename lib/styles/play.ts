@@ -4,7 +4,8 @@ const { width, height } = Dimensions.get('window')
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: '#b9edba'
   },
   header: {
     width: '100%',
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
   wordText: {
     color: '#000',
     fontWeight: 'bold',
-    fontSize: 20
+    fontSize: 25
   },
   textContainer: {
     alignItems: 'flex-start',
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
   subTitle: {
     width: width * 0.75,
     color: '#444',
-    fontSize: 13,
+    fontSize: 15,
     fontWeight: '800',
     letterSpacing: 2,
     marginBottom: 5
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     textAlign: 'left',
     marginRight: 5,
-    fontSize: 13,
+    fontSize: 15,
     lineHeight: 16 * 1.5,
     marginVertical: 2.5
   },
@@ -81,8 +82,7 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    bottom: 0,
-    opacity: 0.3
+    bottom: 0
   },
   viewBtn: {
     width: '100%',

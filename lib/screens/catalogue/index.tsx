@@ -8,7 +8,7 @@ import { useNavigation, useRoute } from '@react-navigation/native'
 import styles, { BORDER_SIZE } from '../../styles/list.ts'
 import LinearGradient from 'react-native-linear-gradient'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import Loading from '../../components/loading'
+import Loading from '../../components/LoadingView.tsx'
 import useAudio from '../../hooks/useAudio.ts'
 
 const Catalogue = () => {

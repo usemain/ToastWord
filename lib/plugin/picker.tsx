@@ -1,4 +1,4 @@
-import { memo, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { Animated, Dimensions, FlatList, Pressable, Text, TouchableWithoutFeedback, BackHandler } from 'react-native'
 import { COMMON_COLOR, COMMON_COLOR_DEFAULT } from '../configs/colors.ts'
 import { PICKER_DATA, PICKER_TYPE } from '../types/picker.ts'
@@ -15,7 +15,7 @@ type Props = {
   close: () => void
 }
 
-const Picker = memo(({ visible, data, close }: Props) => {
+const Picker = ({ visible, data, close }: Props) => {
   const translateY = useRef(new Animated.Value(height)).current
   const opacity = useRef(new Animated.Value(0)).current
   const zIndex = useRef(new Animated.Value(0)).current
@@ -149,6 +149,6 @@ const Picker = memo(({ visible, data, close }: Props) => {
       </Animated.View>
     </TouchableWithoutFeedback>
   )
-})
+}
 
 export default Picker

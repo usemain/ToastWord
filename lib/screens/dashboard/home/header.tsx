@@ -3,16 +3,16 @@ import { Pressable, Text, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { COMMON_COLOR_DEFAULT } from '../../../configs/colors.ts'
 import useHomeService from '../../../services/useHomeService.ts'
-import ProgressCircle from '../../../components/progress/circle.tsx'
+import ProgressCircle from '../../../components/ProgressCircle.tsx'
 import useDictionary from '../../../hooks/useDictionary.ts'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import styles from '../../../styles/tabbarStyles/home.ts'
+import styles from '../../../styles/dashboardStyles/home.ts'
 import globalStyles from '../../../configs/globalStyles.ts'
 import useSysStore from '../../../store/sys.store.ts'
 
 const Header = () => {
   const insets = useSafeAreaInsets()
-  const { data, learningDictionary } = useSysStore()
+  const { theme, data, learningDictionary } = useSysStore()
   const { getHomeProgress } = useDictionary()
   const { openDictionaryTitlePicker, openChapterPicker, openFavorite } = useHomeService()
   const [progress, setProgress] = useState(0)
@@ -42,7 +42,11 @@ const Header = () => {
   return (
     <View style={[styles.header, { paddingTop: insets.top }]}>
       <ActionBar />
-      <ProgressCircle progress={progress} />
+      <ProgressCircle
+        progress={progress}
+        color={theme === 'dark' ? '#ffffff' : '#000000'}
+        backgroundColor={theme === 'dark' ? '#1e1e1e' : '#f3f3f3'}
+      />
     </View>
   )
 }

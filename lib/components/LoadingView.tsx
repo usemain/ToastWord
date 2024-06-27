@@ -1,12 +1,12 @@
 import { ReactNode, useState } from 'react'
-import { ActivityIndicator, InteractionManager, View } from 'react-native'
-import { COMMON_COLOR } from '../../configs/colors.ts'
+import { InteractionManager, View } from 'react-native'
+import Loading from './Loading.tsx'
 
 type Props = {
   children: ReactNode
 }
 
-const Loading = ({ children }: Props) => {
+const LoadingView = ({ children }: Props) => {
   const [show, setShow] = useState(true)
   InteractionManager.runAfterInteractions(() => setShow(false))
 
@@ -20,7 +20,7 @@ const Loading = ({ children }: Props) => {
             alignItems: 'center',
             justifyContent: 'center'
           }}>
-            <ActivityIndicator size="small" color={COMMON_COLOR} />
+            <Loading />
           </View>
         ) : (
           <>{children}</>
@@ -30,4 +30,4 @@ const Loading = ({ children }: Props) => {
   )
 }
 
-export default Loading
+export default LoadingView
