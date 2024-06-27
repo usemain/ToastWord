@@ -96,14 +96,7 @@ const usePlay = () => {
     }
   }
 
-  // 播放单词
-  const onWordPlay = async (index: number, word: Word) => {
-    setPlayingIndex(index)
-    await onAudioPlay(word, () => {
-      setPlayingIndex(-1)
-    })
-  }
-
+  // 查询是否收藏
   const selected = (page: number) => {
     return getQuery<CollectionWordData[]>(CollectionWordModel, {
         label: 'name',
@@ -114,6 +107,14 @@ const usePlay = () => {
         query: data?.dictionaryResource.id as string
       }
     )
+  }
+
+  // 播放单词
+  const onWordPlay = async (index: number, word: Word) => {
+    setPlayingIndex(index)
+    await onAudioPlay(word, () => {
+      setPlayingIndex(-1)
+    })
   }
 
   return {

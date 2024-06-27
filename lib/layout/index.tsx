@@ -23,7 +23,7 @@ import Theme from '../screens/theme'
 const { Navigator, Screen } = createStackNavigator()
 
 const customHeaderLeft = () => {
-  const navigation = useNavigation()
+  const { goBack } = useNavigation()
 
   return (
     <Pressable
@@ -34,7 +34,7 @@ const customHeaderLeft = () => {
         display: 'flex',
         justifyContent: 'center'
       }}
-      onPress={() => navigation.goBack()}
+      onPress={() => goBack()}
     >
       <MaterialIcons name="arrow-back-ios" size={scale(15)} color={useThemeColor('text')} />
     </Pressable>

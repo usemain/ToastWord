@@ -85,7 +85,7 @@ const useHomeService = () => {
       let res = getQuery<LearningDictionaryData[]>(LearningDictionaryModel, {
         label: 'dictionaryId', query: data.dictionaryResource.id
       })
-      // 计算学习位置所在的章节索引
+      // 计算出学习位置所在的章节索引
       let length = res.length === 0 ? 0 : getCalculateChapterIndex(dictionaryData.length, 20, res[0].learning)
       // 获取章节的单词并开始学习
       let currentIndex = getChapterAndPage(dictionaryData.length, res.length === 0 ? 0 : res[0].learning, 20)

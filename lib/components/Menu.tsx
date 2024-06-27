@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { DimensionValue, FlatList, Pressable, Text, TextStyle, TouchableOpacity, View, ViewStyle } from 'react-native'
+import { DimensionValue, FlatList, Pressable, Text, TextStyle, View, ViewStyle } from 'react-native'
 import { scale } from 'react-native-size-matters'
 import LinearGradient from 'react-native-linear-gradient'
 import { COMMON_COLOR, COMMON_COLOR_DEFAULT } from '../configs/colors.ts'

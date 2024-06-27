@@ -12,6 +12,7 @@ const useDictionary = () => {
 
   /**
    * 词典筛选
+   * @return Record<string, Record<string, Array<DictionaryResource>[]>>
    */
   const getCategorizedDictionaryMap = Object.keys(dictionaryMap).reduce((pre: DictionaryCategories, cur: string) => {
     pre[cur] = dictionaryMap[cur].reduce((categories: Categories, exam: DictionaryResource) => {
@@ -29,12 +30,13 @@ const useDictionary = () => {
 
   /**
    * 字典标题分类
-   * @return string[] 标签列表
+   * @return string[]
    */
   const getCategorizedDictionaryTitle = Object.keys(categorizedDictionaryMap)
 
   /**
    * 根据字典标题获取对应的类目的标签
+   * @return Record<string, string[]>
    */
   const getCategorizedDictionaryItemLabel: CategoriesLabel = Object.keys(dictionaryMap).reduce((pre: CategoriesLabel, cur: string) => {
     pre[cur] = dictionaryMap[cur].reduce((categories: string[], exam: DictionaryResource) => {
@@ -51,7 +53,7 @@ const useDictionary = () => {
   /**
    * 根据标签获取对应的词库标记
    * @param label 词库标签
-   * @return string[] 标签列表
+   * @return string[]
    */
   const getCategorizedItemLabelData = (label: string) => {
     return Array.from(new Set(categorizedDictionaryMap[label]
@@ -64,7 +66,7 @@ const useDictionary = () => {
 
   /**
    * 根据传递标签获取对应的数据
-   * @param label 词库标签
+   * @param label
    */
   const getSelectItemLabelData = (label: string) => {
     dictionaryMap[label].reduce((categories: Categories, exam: DictionaryResource) => {
@@ -83,7 +85,7 @@ const useDictionary = () => {
    * 根据标签获取对应的词库列表
    * @param label 词库标签
    * @param tags 词库标记
-   * @return DictionaryResource[] 词库列表
+   * @return DictionaryResource[]
    */
   const getCategorizedDictionaryData = (label: string, tags: string) => {
     return categorizedDictionaryDataMap[label].filter((item) => {
@@ -95,7 +97,7 @@ const useDictionary = () => {
    * 根据词库Id和词库数量计算出学习进度
    * @param id 词库Id
    * @param length 词库数量
-   * @return number 百分比进度
+   * @return number
    */
   const getProgress = (id: string, length: number) => {
     const res = getQuery<LearningDictionaryData[]>(LearningDictionaryModel, {
@@ -107,7 +109,7 @@ const useDictionary = () => {
 
   /**
    * 根据词库Id和词库数量计算出首页学习进度
-   * @return number 百分比进度
+   * @return number
    */
   const getHomeProgress = () => {
     const length = (data?.dictionaryResource.length || 0)

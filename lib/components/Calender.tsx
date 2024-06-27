@@ -1,5 +1,5 @@
 import { FlatList, Pressable, Text, View } from 'react-native'
-import { COMMON_COLOR } from '../configs/colors.ts'
+import { COMMON_COLOR } from '../configs/Colors.ts'
 import { useState } from 'react'
 import { CalendarItemType, DatesType } from '../types/calendar.ts'
 import Ionicons from 'react-native-vector-icons/Ionicons'
@@ -121,12 +121,11 @@ const Calendar = ({ dates = [], paddingTop = 0 }: Props) => {
   // 点击日期
   const onDateChange = (e: CalendarItemType) => {
     if (e.start) {
-      console.log('start')
+
     } else if (e.end) {
-      console.log('end')
+
     } else {
       setSelectDay(e.day)
-      console.log(dayjs(`${year}-${month + 1}-${e.day}`).format('YYYY-MM-DD'))
     }
   }
 

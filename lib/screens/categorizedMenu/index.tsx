@@ -1,7 +1,7 @@
 import { View } from 'react-native'
 import Menu from '../../components/Menu.tsx'
 import DictionaryClassification from './dictionaryClassification.tsx'
-import Loading from '../../components/LoadingView.tsx'
+import LoadingView from '../../components/LoadingView.tsx'
 import useCategorizedMenu from '../../services/useCategorizedMenu.ts'
 import useSysStore from '../../store/sys.store.ts'
 
@@ -24,13 +24,13 @@ const CategorizedMenu = () => {
         menuStartColor={theme === 'dark' ? '#202020' : '#eaeaea'}
         menuEndColor={theme === 'dark' ? '#202020' : '#eaeaea'}
       />
-      <Loading>
+      <LoadingView>
         <DictionaryClassification
           active={active}
           dictionaryData={categorizedDictionaryData}
           onChange={onDictionaryChange}
         />
-      </Loading>
+      </LoadingView>
     </View>
   )
 }

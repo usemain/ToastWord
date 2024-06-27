@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Animated, Image, Pressable, Text, View } from 'react-native'
+import { Animated, Pressable, Text, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { COMMON_COLOR, COMMON_COLOR_DEFAULT } from '../../configs/colors.ts'
 import { ITEM_SCALE } from '../../configs/consts.ts'
@@ -11,6 +11,7 @@ import useSysStore from '../../store/sys.store.ts'
 import useDao from '../../dao/useDao.ts'
 import { useIsFocused, useNavigation } from '@react-navigation/native'
 import { Word } from '../../types/resources.ts'
+import NullText from '../../components/NullText.tsx'
 
 const Favorite = () => {
   const insets = useSafeAreaInsets()
@@ -86,9 +87,7 @@ const Favorite = () => {
     <Loading>
       {
         wordData.length === 0 ? (
-          <View style={styles.nullView}>
-            <Image style={styles.nullImg} source={require('../../assets/null.png')} />
-          </View>
+          <NullText title={'暂无收藏单词'} />
         ) : (
           <Animated.FlatList
             style={{ flex: 1 }}

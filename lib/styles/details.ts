@@ -1,7 +1,5 @@
 import { StyleSheet } from 'react-native'
 
-export const BORDER_SIZE = 10
-
 const styles = StyleSheet.create({
   container: {
     width: '100%',
@@ -17,7 +15,7 @@ const styles = StyleSheet.create({
   box: {
     height: 100,
     backgroundColor: '#000',
-    marginHorizontal: BORDER_SIZE,
+    marginHorizontal: 10,
     borderRadius: 15,
   }
 })

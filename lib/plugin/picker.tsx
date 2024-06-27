@@ -19,6 +19,7 @@ const Picker = ({ visible, data, close }: Props) => {
   const translateY = useRef(new Animated.Value(height)).current
   const opacity = useRef(new Animated.Value(0)).current
   const zIndex = useRef(new Animated.Value(0)).current
+  const scale = useRef(new Animated.Value(0)).current
   const flatListRef = useRef<FlatList>(null)
 
   const scrollToIndex = (index: number) => {
@@ -48,6 +49,12 @@ const Picker = ({ visible, data, close }: Props) => {
           useNativeDriver: true
         }),
         Animated.timing(zIndex, {
+          toValue: 1,
+          duration: timer,
+          useNativeDriver: true
+        })
+        ,
+        Animated.timing(scale, {
           toValue: 1,
           duration: timer,
           useNativeDriver: true
@@ -98,6 +105,12 @@ const Picker = ({ visible, data, close }: Props) => {
         duration: timer,
         useNativeDriver: true
       })
+      ,
+      Animated.timing(scale, {
+        toValue: 0,
+        duration: timer,
+        useNativeDriver: true
+      })
     ]).start(() => {
       close()
     })
@@ -130,7 +143,7 @@ const Picker = ({ visible, data, close }: Props) => {
   return (
     <TouchableWithoutFeedback onPress={onClose}>
       <Animated.View style={[styles.wrapper, { zIndex: animatedZIndex, opacity: opacity }]}>
-        <Animated.View style={[styles.container, { transform: [{ translateY }] }]}>
+        <Animated.View style={[styles.container, { transform: [{ translateY }, { scale }] }]}>
           <FlatList
             ref={flatListRef}
             bounces={true}

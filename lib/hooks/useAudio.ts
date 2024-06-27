@@ -37,20 +37,15 @@ const useAudio = () => {
       setIsPlaying(true)
 
       audioPlayer.addPlayBackListener((e) => {
-        if (Platform.OS === 'ios') {
-          if (isNaN(e.currentPosition) === isNaN(e.duration)) {
-            callback()
-            audioPlayer.stopPlayer()
-            audioPlayer.removePlayBackListener()
-            setIsPlaying(false)
-          }
-        } else {
-          if (e.currentPosition === e.duration) {
-            callback()
-            audioPlayer.stopPlayer()
-            audioPlayer.removePlayBackListener()
-            setIsPlaying(false)
-          }
+        const shouldStopPlaying = Platform.OS === 'ios'
+          ? isNaN(e.currentPosition) && isNaN(e.duration)
+          : e.currentPosition === e.duration
+
+        if (shouldStopPlaying) {
+          callback()
+          audioPlayer.stopPlayer()
+          audioPlayer.removePlayBackListener()
+          setIsPlaying(false)
         }
       })
     } catch (error) {
