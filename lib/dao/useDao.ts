@@ -7,7 +7,7 @@ const useDao = () => {
 
   const getQuery = <T>(model: Realm.ObjectClass, ...queries: Queries[]): T => {
     let filterString = ''
-    const values: any[] = []
+    const values: string[] = []
 
     queries.forEach(({ label, query }, index) => {
       filterString += `${label} = $${index} && `
@@ -16,7 +16,9 @@ const useDao = () => {
 
     filterString = filterString.slice(0, -3)
 
-    return realm.objects(model).filtered(filterString, ...values) as unknown as T
+    return realm
+      .objects(model)
+      .filtered(filterString, ...values) as unknown as T
   }
 
   const setQuery = <T extends object>(model: Realm.ObjectClass, data: T) => {
@@ -25,7 +27,10 @@ const useDao = () => {
     })
   }
 
-  const updateLearningDictionaryQuery = (model: LearningDictionaryData, value: number) => {
+  const updateLearningDictionaryQuery = (
+    model: LearningDictionaryData,
+    value: number
+  ) => {
     realm.write(() => {
       model.learning = value
     })
@@ -36,7 +41,6 @@ const useDao = () => {
       realm.delete(data)
     })
   }
-
 
   return {
     getQuery,

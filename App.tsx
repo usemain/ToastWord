@@ -25,13 +25,13 @@ const App = () => {
       setTheme(theme as IThemeName || 'light')
     })
   }, [])
-
+  
   return (
     <RealmProvider schema={[LearningDictionaryModel, LearningDaysModel, CollectionWordModel]}>
-      <StatusBar barStyle={theme === 'dark' ? 'light-content' : 'dark-content'} />
       <SafeAreaProvider>
         <NavigationContainer>
           <ThemeProvider value={ThemeColors[theme]}>
+            <StatusBar barStyle={theme === 'dark' ? 'light-content' : 'dark-content'} />
             {root}
           </ThemeProvider>
         </NavigationContainer>

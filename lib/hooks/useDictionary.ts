@@ -1,6 +1,17 @@
-import { categorizedDictionaryDataMap, categorizedDictionaryMap, dictionaryMap } from '../resources/dictionary.ts'
-import { Categories, CategoriesLabel, DictionaryCategories, DictionaryResource } from '../types/resources.ts'
-import LearningDictionaryModel, { LearningDictionaryData } from '../dao/models/learningDictionary.tsx'
+import {
+  categorizedDictionaryDataMap,
+  categorizedDictionaryMap,
+  dictionaryMap
+} from '../resources/dictionary.ts'
+import {
+  Categories,
+  CategoriesLabel,
+  DictionaryCategories,
+  DictionaryResource
+} from '../types/resources.ts'
+import LearningDictionaryModel, {
+  LearningDictionaryData
+} from '../dao/models/learningDictionary.tsx'
 import useDictionaryStore from '../store/dictionary.store.ts'
 import useSysStore from '../store/sys.store.ts'
 import useDao from '../dao/useDao.ts'
@@ -14,19 +25,25 @@ const useDictionary = () => {
    * 词典筛选
    * @return Record<string, Record<string, Array<DictionaryResource>[]>>
    */
-  const getCategorizedDictionaryMap = Object.keys(dictionaryMap).reduce((pre: DictionaryCategories, cur: string) => {
-    pre[cur] = dictionaryMap[cur].reduce((categories: Categories, exam: DictionaryResource) => {
-      exam.tags.forEach(tag => {
-        if (categories[tag]) {
-          categories[tag].push(exam)
-        } else {
-          categories[tag] = [exam]
-        }
-      })
-      return categories
-    }, {})
-    return pre
-  }, {})
+  const getCategorizedDictionaryMap = Object.keys(dictionaryMap).reduce(
+    (pre: DictionaryCategories, cur: string) => {
+      pre[cur] = dictionaryMap[cur].reduce(
+        (categories: Categories, exam: DictionaryResource) => {
+          exam.tags.forEach((tag) => {
+            if (categories[tag]) {
+              categories[tag].push(exam)
+            } else {
+              categories[tag] = [exam]
+            }
+          })
+          return categories
+        },
+        {}
+      )
+      return pre
+    },
+    {}
+  )
 
   /**
    * 字典标题分类
@@ -38,15 +55,20 @@ const useDictionary = () => {
    * 根据字典标题获取对应的类目的标签
    * @return Record<string, string[]>
    */
-  const getCategorizedDictionaryItemLabel: CategoriesLabel = Object.keys(dictionaryMap).reduce((pre: CategoriesLabel, cur: string) => {
-    pre[cur] = dictionaryMap[cur].reduce((categories: string[], exam: DictionaryResource) => {
-      exam.tags.forEach(tag => {
-        if (!categories.includes(tag)) {
-          categories.push(tag)
-        }
-      })
-      return categories
-    }, [])
+  const getCategorizedDictionaryItemLabel: CategoriesLabel = Object.keys(
+    dictionaryMap
+  ).reduce((pre: CategoriesLabel, cur: string) => {
+    pre[cur] = dictionaryMap[cur].reduce(
+      (categories: string[], exam: DictionaryResource) => {
+        exam.tags.forEach((tag) => {
+          if (!categories.includes(tag)) {
+            categories.push(tag)
+          }
+        })
+        return categories
+      },
+      []
+    )
     return pre
   }, {})
 
@@ -56,29 +78,37 @@ const useDictionary = () => {
    * @return string[]
    */
   const getCategorizedItemLabelData = (label: string) => {
-    return Array.from(new Set(categorizedDictionaryMap[label]
-        .map((item: string) => dictionaryItemLabel[item])
-        .reduce((acc, curr) => acc.concat(curr), [])
-        .sort((a, b) => (a === '其他' ? 1 : b === '其他' ? -1 : 0))
-      )
-    ) || []
+    return (
+      Array.from(
+        new Set(
+          categorizedDictionaryMap[label]
+            .map((item: string) => dictionaryItemLabel[item])
+            .reduce((acc, curr) => acc.concat(curr), [])
+            .sort((a, b) => (a === '其他' ? 1 : b === '其他' ? -1 : 0))
+        )
+      ) || []
+    )
   }
 
   /**
    * 根据传递标签获取对应的数据
    * @param label
+   * @return Record<string, Array<DictionaryResource>[]>
    */
   const getSelectItemLabelData = (label: string) => {
-    dictionaryMap[label].reduce((categories: Categories, exam: DictionaryResource) => {
-      exam.tags.forEach(tag => {
-        if (categories[tag]) {
-          categories[tag].push(exam)
-        } else {
-          categories[tag] = [exam]
-        }
-      })
-      return categories
-    }, {})
+    return dictionaryMap[label].reduce(
+      (categories: Categories, exam: DictionaryResource) => {
+        exam.tags.forEach((tag) => {
+          if (categories[tag]) {
+            categories[tag].push(exam)
+          } else {
+            categories[tag] = [exam]
+          }
+        })
+        return categories
+      },
+      {}
+    )
   }
 
   /**
@@ -88,9 +118,11 @@ const useDictionary = () => {
    * @return DictionaryResource[]
    */
   const getCategorizedDictionaryData = (label: string, tags: string) => {
-    return categorizedDictionaryDataMap[label].filter((item) => {
-      return item.tags.includes(tags)
-    }) || []
+    return (
+      categorizedDictionaryDataMap[label].filter((item) => {
+        return item.tags.includes(tags)
+      }) || []
+    )
   }
 
   /**
@@ -101,7 +133,8 @@ const useDictionary = () => {
    */
   const getProgress = (id: string, length: number) => {
     const res = getQuery<LearningDictionaryData[]>(LearningDictionaryModel, {
-      label: 'dictionaryId', query: id
+      label: 'dictionaryId',
+      query: id
     })
     const rawProgress = res.length > 0 ? (res[0].learning / length) * 100 : 0
     return parseFloat(Math.min(100, rawProgress).toFixed(2))
@@ -112,8 +145,11 @@ const useDictionary = () => {
    * @return number
    */
   const getHomeProgress = () => {
-    const length = (data?.dictionaryResource.length || 0)
-    const rawProgress = learningDictionary !== null ? (learningDictionary.learning / length) * 100 : 0
+    const length = data?.dictionaryResource.length || 0
+    const rawProgress =
+      learningDictionary !== null
+        ? (learningDictionary.learning / length) * 100
+        : 0
     return parseFloat(Math.min(100, rawProgress).toFixed(2))
   }
 

@@ -32,7 +32,7 @@ const tabMap: Record<string, TabItem> = {
   Msg: {
     icon: require('../../assets/dashboard/msg.png'),
     activeIcon: require('../../assets/dashboard/msg_active.png'),
-    title: '详情'
+    title: '消息'
   },
   Menu: {
     icon: require('../../assets/dashboard/menu.png'),

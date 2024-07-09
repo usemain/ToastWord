@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react'
 import { DimensionValue, FlatList, Pressable, Text, TextStyle, View, ViewStyle } from 'react-native'
+import { COMMON_COLOR, COMMON_COLOR_DEFAULT } from '../configs/colors.ts'
 import { scale } from 'react-native-size-matters'
 import LinearGradient from 'react-native-linear-gradient'
-import { COMMON_COLOR, COMMON_COLOR_DEFAULT } from '../configs/colors.ts'
 
 type Props = {
   data: string[]
@@ -74,7 +74,7 @@ const Menu = (
           style={{
             fontSize: scale(10),
             color: active === index ? '#ffffff' : '#a5a5a5',
-            fontFamily:'AlimamaShuHeiTi-Bold',
+            fontFamily: 'AlimamaShuHeiTi-Bold',
             ...textStyle
           }}
         >

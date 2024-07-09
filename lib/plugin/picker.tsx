@@ -19,7 +19,7 @@ const Picker = ({ visible, data, close }: Props) => {
   const translateY = useRef(new Animated.Value(height)).current
   const opacity = useRef(new Animated.Value(0)).current
   const zIndex = useRef(new Animated.Value(0)).current
-  const scale = useRef(new Animated.Value(0)).current
+  const scale = useRef(new Animated.Value(-1)).current
   const flatListRef = useRef<FlatList>(null)
 
   const scrollToIndex = (index: number) => {
@@ -52,8 +52,7 @@ const Picker = ({ visible, data, close }: Props) => {
           toValue: 1,
           duration: timer,
           useNativeDriver: true
-        })
-        ,
+        }),
         Animated.timing(scale, {
           toValue: 1,
           duration: timer,
@@ -104,10 +103,9 @@ const Picker = ({ visible, data, close }: Props) => {
         toValue: 0,
         duration: timer,
         useNativeDriver: true
-      })
-      ,
+      }),
       Animated.timing(scale, {
-        toValue: 0,
+        toValue: -1,
         duration: timer,
         useNativeDriver: true
       })

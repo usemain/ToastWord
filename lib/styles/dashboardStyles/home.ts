@@ -4,7 +4,7 @@ import { COMMON_COLOR_DEFAULT } from '../../configs/colors.ts'
 const styles = StyleSheet.create({
   header: {
     width: '100%',
-    height: 350,
+    height: 320,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   },
   actionBar: {
     width: '100%',
-    height: 30,
+    height: 20,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',

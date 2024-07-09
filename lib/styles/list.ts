@@ -6,8 +6,7 @@ const { width } = Dimensions.get('window')
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    paddingTop: 10
+    width: '100%'
   },
   absoluteFillBackground: {
     position: 'absolute',
@@ -77,7 +76,7 @@ const styles = StyleSheet.create({
   nullImg: {
     width: width / 1.5,
     height: width / 1.5
-  },
+  }
 })
 
 export {
