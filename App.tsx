@@ -11,7 +11,7 @@ import CollectionWordModel from './lib/dao/models/collectionWord.tsx'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import useSysStore from './lib/store/sys.store.ts'
 import providers from './lib/providers'
-import Layout from './lib/layout/index.tsx'
+import Layout from './lib/screens/layout.tsx'
 
 const root = providers.reduce((child, Parent) => {
   return <Parent children={child} />
@@ -25,7 +25,7 @@ const App = () => {
       setTheme(theme as IThemeName || 'light')
     })
   }, [])
-  
+
   return (
     <RealmProvider schema={[LearningDictionaryModel, LearningDaysModel, CollectionWordModel]}>
       <SafeAreaProvider>

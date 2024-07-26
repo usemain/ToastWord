@@ -1,29 +1,19 @@
 import { useEffect } from 'react'
 import { Pressable } from 'react-native'
 import { COMMON_COLOR_DEFAULT } from '../configs/colors.ts'
-import {
-  createStackNavigator,
-  TransitionPresets
-} from '@react-navigation/stack'
+import { createStackNavigator, TransitionPresets } from '@react-navigation/stack'
 import { useNavigation } from '@react-navigation/native'
 import { scale } from 'react-native-size-matters'
 import { useThemeColor } from '../hooks/useThemeColor.ts'
-import LearningDictionaryModel, {
-  LearningDictionaryData
-} from '../dao/models/learningDictionary.tsx'
+import LearningDictionaryModel, { LearningDictionaryData } from '../dao/models/learningDictionary.tsx'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 import useDictionaryStore from '../store/dictionary.store.ts'
 import useSysStore from '../store/sys.store.ts'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import dictionaryJsonMap from '../resources/dictionaryJson.ts'
-import Dashboard from '../screens/dashboard/index.tsx'
-import CategorizedMenu from '../screens/categorizedMenu'
 import useDictionary from '../hooks/useDictionary.ts'
-import Catalogue from '../screens/catalogue'
-import Play from '../screens/play'
 import useDao from '../dao/useDao.ts'
-import Favorite from '../screens/favorite'
-import Theme from '../screens/theme'
+import routes from '../routes'
 
 const { Navigator, Screen } = createStackNavigator()
 
@@ -54,8 +44,7 @@ const Layout = () => {
   const { getQuery } = useDao()
   const { setData, setDictionaryData, setLearningDictionary } = useSysStore()
   const { setDictionaryTitle, setDictionaryItemLabel } = useDictionaryStore()
-  const { getCategorizedDictionaryTitle, getCategorizedDictionaryItemLabel } =
-    useDictionary()
+  const { getCategorizedDictionaryTitle, getCategorizedDictionaryItemLabel } = useDictionary()
 
   useEffect(() => {
     getData().then((res) => {
@@ -86,6 +75,7 @@ const Layout = () => {
 
   return (
     <Navigator
+      initialRouteName={'Dashboard'}
       screenOptions={{
         headerStyle: {
           backgroundColor: useThemeColor('background')
@@ -101,51 +91,17 @@ const Layout = () => {
         ...TransitionPresets.SlideFromRightIOS
       }}
     >
-      <Screen
-        name="Dashboard"
-        component={Dashboard}
-        options={{
-          title: 'TabBar',
-          headerShown: false
-        }}
-      />
-      <Screen
-        name="Theme"
-        component={Theme}
-        options={{
-          title: '主题'
-        }}
-      />
-      <Screen
-        name="CategorizedMenu"
-        component={CategorizedMenu}
-        options={{
-          title: '分类菜单'
-        }}
-      />
-      <Screen
-        name="Catalogue"
-        component={Catalogue}
-        options={{
-          title: '目录'
-        }}
-      />
-      <Screen
-        name="Favorite"
-        component={Favorite}
-        options={{
-          title: '收藏'
-        }}
-      />
-      <Screen
-        name="Play"
-        component={Play}
-        options={{
-          title: '开始',
-          gestureEnabled: false,
-          headerShown: false
-        }}
-      />
+      {
+        routes.map((item, index) => (
+          <Screen
+            key={index}
+            name={item.name}
+            component={item.component}
+            options={item?.options || {}}
+            initialParams={item?.initialParams || {}}
+          />
+        ))
+      }
     </Navigator>
   )
 }

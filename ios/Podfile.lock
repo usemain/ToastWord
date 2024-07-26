@@ -937,9 +937,9 @@ PODS:
   - React-Mapbuffer (0.74.1):
     - glog
     - React-debug
-  - react-native-safe-area-context (4.10.1):
+  - react-native-safe-area-context (4.10.8):
     - React-Core
-  - react-native-webview (13.10.2):
+  - react-native-webview (13.10.5):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1193,9 +1193,9 @@ PODS:
     - React
   - RNAudioRecorderPlayer (3.6.7):
     - React-Core
-  - RNCAsyncStorage (1.23.1):
+  - RNCAsyncStorage (1.24.0):
     - React-Core
-  - RNGestureHandler (2.16.2):
+  - RNGestureHandler (2.17.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1216,7 +1216,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNScreens (3.31.1):
+  - RNScreens (3.32.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1238,7 +1238,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNSVG (14.1.0):
+  - RNSVG (14.2.0):
     - React-Core
   - RNVectorIcons (10.1.0):
     - DoubleConversion
@@ -1499,8 +1499,8 @@ SPEC CHECKSUMS:
   React-jsitracing: 233d1a798fe0ff33b8e630b8f00f62c4a8115fbc
   React-logger: 7e7403a2b14c97f847d90763af76b84b152b6fce
   React-Mapbuffer: 11029dcd47c5c9e057a4092ab9c2a8d10a496a33
-  react-native-safe-area-context: dcab599c527c2d7de2d76507a523d20a0b83823d
-  react-native-webview: 2905d1455be11bcbd909ef33472d8fcdf7abcc41
+  react-native-safe-area-context: b7daa1a8df36095a032dff095a1ea8963cb48371
+  react-native-webview: 553abd09f58e340fdc7746c9e2ae096839e99911
   React-nativeconfig: b0073a590774e8b35192fead188a36d1dca23dec
   React-NativeModulesApple: df46ff3e3de5b842b30b4ca8a6caae6d7c8ab09f
   React-perflogger: 3d31e0d1e8ad891e43a09ac70b7b17a79773003a
@@ -1526,10 +1526,10 @@ SPEC CHECKSUMS:
   ReactCommon: f42444e384d82ab89184aed5d6f3142748b54768
   RealmJS: 3e6010ae878227830e947f40f996e13ccab4c8ba
   RNAudioRecorderPlayer: 9b34adc281800e5b19258f1b91d889b1ef3abdd6
-  RNCAsyncStorage: 826b603ae9c0f88b5ac4e956801f755109fa4d5c
-  RNGestureHandler: 2282cfbcf86c360d29f44ace393203afd5c6cff7
-  RNScreens: b32a9ff15bea7fcdbe5dff6477bc503f792b1208
-  RNSVG: ba3e7232f45e34b7b47e74472386cf4e1a676d0a
+  RNCAsyncStorage: ec53e44dc3e75b44aa2a9f37618a49c3bc080a7a
+  RNGestureHandler: 8dbcccada4a7e702e7dec9338c251b1cf393c960
+  RNScreens: 5aeecbb09aa7285379b6e9f3c8a3c859bb16401c
+  RNSVG: 963a95f1f5d512a13d11ffd50d351c87fb5c6890
   RNVectorIcons: 2a2f79274248390b80684ea3c4400bd374a15c90
   SocketRocket: abac6f5de4d4d62d24e11868d7a2f427e0ef940d
   Yoga: 348f8b538c3ed4423eb58a8e5730feec50bce372

@@ -1,6 +1,3 @@
-import useDao from '../dao/useDao.ts'
-import useSysStore from '../store/sys.store.ts'
-import useDictionaryStore from '../store/dictionary.store.ts'
 import { usePicker } from '../context/picker.tsx'
 import { useToast } from '../context/toast.tsx'
 import LearningDictionaryModel, { LearningDictionaryData } from '../dao/models/learningDictionary.tsx'
@@ -12,6 +9,9 @@ import {
 } from '../utils/classification.ts'
 import { useNavigation } from '@react-navigation/native'
 import { useDialog } from '../context/dialog.tsx'
+import useDictionaryStore from '../store/dictionary.store.ts'
+import useSysStore from '../store/sys.store.ts'
+import useDao from '../dao/useDao.ts'
 
 const useHomeService = () => {
   const toast = useToast()
