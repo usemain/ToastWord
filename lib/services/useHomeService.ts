@@ -1,6 +1,8 @@
 import { usePicker } from '../context/picker.tsx'
 import { useToast } from '../context/toast.tsx'
-import LearningDictionaryModel, { LearningDictionaryData } from '../dao/models/learningDictionary.tsx'
+import LearningDictionaryModel, {
+  LearningDictionaryData
+} from '../dao/models/learningDictionary.tsx'
 import {
   getCalculateChapterIndex,
   getCalculateNumberOfChunks,
@@ -31,10 +33,7 @@ const useHomeService = () => {
         label: item
       })),
       ok: (e) => {
-        navigate(
-          'CategorizedMenu' as never,
-          { title: e.value } as never
-        )
+        navigate('CategorizedMenu' as never, { title: e.value } as never)
       }
     })
   }
@@ -44,12 +43,20 @@ const useHomeService = () => {
     if (data) {
       // 当前词库学习数据
       let res = getQuery<LearningDictionaryData[]>(LearningDictionaryModel, {
-        label: 'dictionaryId', query: data.dictionaryResource.id
+        label: 'dictionaryId',
+        query: data.dictionaryResource.id
       })
       // 计算出当前词库学习章节
       let length = getCalculateNumberOfChunks(dictionaryData, 20)
       picker.open({
-        value: res.length === 0 ? 0 : getCalculateChapterIndex(dictionaryData.length, 20, res[0].learning),
+        value:
+          res.length === 0
+            ? 0
+            : getCalculateChapterIndex(
+                dictionaryData.length,
+                20,
+                res[0].learning
+              ),
         data: Array.from({ length }, (_, index) => index).map((_, index) => ({
           value: index,
           label: `第${index + 1}章`
@@ -83,17 +90,28 @@ const useHomeService = () => {
       }
       // 当前词库学习数据
       let res = getQuery<LearningDictionaryData[]>(LearningDictionaryModel, {
-        label: 'dictionaryId', query: data.dictionaryResource.id
+        label: 'dictionaryId',
+        query: data.dictionaryResource.id
       })
       // 计算出学习位置所在的章节索引
-      let length = res.length === 0 ? 0 : getCalculateChapterIndex(dictionaryData.length, 20, res[0].learning)
+      let length =
+        res.length === 0
+          ? 0
+          : getCalculateChapterIndex(dictionaryData.length, 20, res[0].learning)
       // 获取章节的单词并开始学习
-      let currentIndex = getChapterAndPage(dictionaryData.length, res.length === 0 ? 0 : res[0].learning, 20)
-      navigate('Play' as never, {
-        data: getDataByIndex(dictionaryData, length as number, 20),
-        currentIndex: currentIndex[1],
-        length: length
-      } as never)
+      let currentIndex = getChapterAndPage(
+        dictionaryData.length,
+        res.length === 0 ? 0 : res[0].learning,
+        20
+      )
+      navigate(
+        'Play' as never,
+        {
+          data: getDataByIndex(dictionaryData, length as number, 20),
+          currentIndex: currentIndex[1],
+          length: length
+        } as never
+      )
     } else {
       toast.open({
         content: '请先选择词库',

@@ -2,26 +2,39 @@ import { useEffect, useRef, useState } from 'react'
 import { BackHandler, FlatList } from 'react-native'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { Word } from '../types/resources.ts'
-import CollectionWordModel, { CollectionWordData } from '../dao/models/collectionWord.tsx'
-import LearningDictionaryModel, { LearningDictionaryData } from '../dao/models/learningDictionary.tsx'
+import CollectionWordModel, {
+  CollectionWordData
+} from '../dao/models/collectionWord.tsx'
+import LearningDictionaryModel, {
+  LearningDictionaryData
+} from '../dao/models/learningDictionary.tsx'
 import useSysStore from '../store/sys.store.ts'
 import useDao from '../dao/useDao.ts'
 import useAudio from '../hooks/useAudio.ts'
 
 const usePlay = () => {
-  const params = useRoute().params as { data: Word[], currentIndex: number, length: number, type?: string }
+  const params = useRoute().params as {
+    data: Word[]
+    currentIndex: number
+    length: number
+    type?: string
+  }
   const flatListRef = useRef<FlatList>(null)
   const { onAudioPlay } = useAudio()
   const { goBack } = useNavigation()
   const { data, learningDictionary, setLearningDictionary } = useSysStore()
-  const { getQuery, setQuery, delQuery, updateLearningDictionaryQuery } = useDao()
+  const { getQuery, setQuery, delQuery, updateLearningDictionaryQuery } =
+    useDao()
   const [isCollection, setIsCollection] = useState(false)
   const [playingIndex, setPlayingIndex] = useState<number>(-1)
 
   useEffect(() => {
-    const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-      return true
-    })
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      () => {
+        return true
+      }
+    )
     return () => backHandler.remove()
   }, [])
 
@@ -61,12 +74,16 @@ const usePlay = () => {
   // 更新学习进度
   const getUpdateLearningDictionary = (type: 'add' | 'del') => {
     let res = getQuery<LearningDictionaryData[]>(LearningDictionaryModel, {
-      label: 'dictionaryId', query: data?.dictionaryResource.id
+      label: 'dictionaryId',
+      query: data?.dictionaryResource.id
     })
     if (res.length > 0) {
       let learning
       if (type === 'add') {
-        learning = Math.min(res[0].learning + 1, data?.dictionaryResource.length as number)
+        learning = Math.min(
+          res[0].learning + 1,
+          data?.dictionaryResource.length as number
+        )
       } else {
         // 判断如果一直点击上一个,最小边界是当前章数第0项
         learning = Math.max(res[0].learning - 1, params.length * 20)
@@ -98,7 +115,9 @@ const usePlay = () => {
 
   // 查询是否收藏
   const selected = (page: number) => {
-    return getQuery<CollectionWordData[]>(CollectionWordModel, {
+    return getQuery<CollectionWordData[]>(
+      CollectionWordModel,
+      {
         label: 'name',
         query: params.data[page].name
       },
