@@ -22,16 +22,22 @@ const App = () => {
 
   useEffect(() => {
     AsyncStorage.getItem('theme').then((theme) => {
-      setTheme(theme as IThemeName || 'light')
+      setTheme((theme as IThemeName) || 'light')
     })
   }, [])
 
   return (
-    <RealmProvider schema={[LearningDictionaryModel, LearningDaysModel, CollectionWordModel]}>
+    <RealmProvider
+      schema={[LearningDictionaryModel, LearningDaysModel, CollectionWordModel]}
+    >
       <SafeAreaProvider>
         <NavigationContainer>
           <ThemeProvider value={ThemeColors[theme]}>
-            <StatusBar barStyle={theme === 'dark' ? 'light-content' : 'dark-content'} />
+            <StatusBar
+              barStyle={theme === 'dark' ? 'light-content' : 'dark-content'}
+              translucent={false}
+              backgroundColor={theme === 'dark' ? '#0f0f15' : '#ffffff'}
+            />
             {root}
           </ThemeProvider>
         </NavigationContainer>
