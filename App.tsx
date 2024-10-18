@@ -18,7 +18,7 @@ const root = providers.reduce((child, Parent) => {
 }, <Layout />)
 
 const App = () => {
-  const { theme, setTheme } = useSys1Store()
+  const { theme, setTheme } = useSysStore()
 
   useEffect(() => {
     AsyncStorage.getItem('theme').then((theme) => {
